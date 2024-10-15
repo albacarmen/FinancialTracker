@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class FinancialTracker {
 
@@ -51,16 +54,39 @@ public class FinancialTracker {
         scanner.close();
     }
 
+    // This method reads transactions from a file
     public static void loadTransactions(String fileName) {
-        // This method should load transactions from a file with the given file name.
-        // If the file does not exist, it should be created.
-        // The transactions should be stored in the `transactions` ArrayList.
-        // Each line of the file represents a single transaction in the following format:
-        // <date>|<time>|<description>|<vendor>|<amount>
-        // For example: 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
-        // After reading all the transactions, the file should be closed.
-        // If any errors occur, an appropriate error message should be displayed.
+        // Try to open the file and read from it
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line; // This will hold each line we read from the file
+
+            // Keep reading lines until there are no more
+            while ((line = reader.readLine()) != null) {
+                // Split the line into parts using "|" as a separator
+                String[] parts = line.split("\\|");
+
+                // Check if we have exactly 5 pieces of information
+                if (parts.length == 5) {
+                    // Convert the first part (date) into a LocalDate object
+                    LocalDate date = LocalDate.parse(parts[0], DATE_FORMATTER);
+                    String time = parts[1]; // The second part is the time
+                    String description = parts[2]; // The third part is the description
+                    String vendor = parts[3]; // The fourth part is the vendor name
+                    double amount = Double.parseDouble(parts[4]); // The fifth part is the amount
+
+                    // New Transaction object and add it to our list
+                    transactions.add(new Transaction(date.toString(), time, description, vendor, amount));
+                } else {
+                    // If the line doesn't have 5 parts, print an error message
+                    System.out.println("Invalid transaction format: " + line);
+                }
+            }
+        } catch (IOException e) {
+            // If there was a problem reading the file, show an error message
+            System.out.println("Error loading transactions: " + e.getMessage());
+        }
     }
+}
 
     private static void addDeposit(Scanner scanner) {
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
