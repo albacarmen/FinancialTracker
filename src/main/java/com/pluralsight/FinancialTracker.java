@@ -4,7 +4,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,42 +15,45 @@ public class FinancialTracker {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public static void main(String[] args) {
-        loadTransactions(FILE_NAME);
+        loadTransactions(FILE_NAME); // Load existing transactions from the file
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
-            System.out.println("\nWelcome to TransactionApp");
+            System.out.println("\nWelcome to TransactionApp! 🎉");
             System.out.println("Choose an option:");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment");
             System.out.println("L) View Ledger");
             System.out.println("X) Exit");
 
+            // Get user input and handle options
             switch (scanner.nextLine().trim().toUpperCase()) {
                 case "D":
-                    addDeposit(scanner);
+                    addDeposit(scanner); // Add a deposit transaction
                     break;
                 case "P":
-                    addPayment(scanner);
+                    addPayment(scanner); // Add a payment transaction
                     break;
                 case "L":
-                    ledgerMenu(scanner);
+                    ledgerMenu(scanner); // Show the ledger menu
                     break;
                 case "X":
-                    running = false;
-                    System.out.println("Exiting. Transactions are saved automatically.");
+                    running = false; // Stop the program
+                    System.out.println("Exiting. Transactions are saved automatically. Bye! 👋");
                     break;
                 default:
-                    System.out.println("Invalid option");
+                    System.out.println("Oops! Invalid option. Try again! 🤔");
             }
+            System.out.println(); // Extra space for clarity
         }
 
-        scanner.close();
+        scanner.close(); // Close the scanner to avoid memory leaks
     }
 
+    // Load transactions from the file
     public static void loadTransactions(String fileName) {
-        try (InputStream inputStream = FinancialTracker.class.getResourceAsStream("/" + fileName);
+        try (InputStream inputStream = FinancialTracker.class.getResourceAsStream("/transactions.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
             String line;
@@ -96,20 +98,16 @@ public class FinancialTracker {
 
             if (amount <= 0) {
                 System.out.println("\nERROR: Cannot enter value less than or equal to 0.");
-                return;
+                return; // Exit if the amount is invalid
             }
 
             Transaction transaction = new Transaction(date, time, description, vendor, amount);
-            transactions.add(transaction);
+            transactions.add(transaction); // Add to the list of transactions
+            saveTransactionToFile(transaction); // Save to file
 
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-                bufferedWriter.write(transaction.toString());
-                bufferedWriter.newLine();
-            }
-
-            System.out.println("\nDeposit of $" + String.format("%.2f", amount) + " successfully processed.");
+            System.out.println("\nDeposit of $" + String.format("%.2f", amount) + " successfully processed. 🎉");
         } catch (Exception e) {
-            System.err.println("\nERROR occurred while entering deposit.");
+            System.err.println("\nERROR occurred while entering deposit. 😢");
         }
     }
 
@@ -139,21 +137,26 @@ public class FinancialTracker {
 
             if (amount <= 0) {
                 System.out.println("\nERROR: Cannot enter value less than or equal to 0.");
-                return;
+                return; // Exit if the amount is invalid
             }
 
-            double amountNegative = amount * -1;
+            double amountNegative = amount * -1; // Make the payment negative
             Transaction transaction = new Transaction(date, time, description, vendor, amountNegative);
-            transactions.add(transaction);
+            transactions.add(transaction); // Add to the list of transactions
+            saveTransactionToFile(transaction); // Save to file
 
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-                bufferedWriter.write(transaction.toString());
-                bufferedWriter.newLine();
-            }
-
-            System.out.println("\nPayment of $" + String.format("%.2f", amount) + " successfully processed.");
+            System.out.println("\nPayment of $" + String.format("%.2f", amount) + " successfully processed. 💸");
         } catch (Exception e) {
-            System.err.println("\nERROR occurred while entering payment.");
+            System.err.println("\nERROR occurred while entering payment. 😢");
+        }
+    }
+
+    private static void saveTransactionToFile(Transaction transaction) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+            bufferedWriter.write(transaction.toString());
+            bufferedWriter.newLine(); // New line for the next transaction
+        } catch (IOException e) {
+            System.err.println("ERROR saving transaction: " + e.getMessage());
         }
     }
 
@@ -162,9 +165,9 @@ public class FinancialTracker {
         while (running) {
             System.out.println("Ledger");
             System.out.println("Choose an option:");
-            System.out.println("A) All");
-            System.out.println("D) Deposits");
-            System.out.println("P) Payments");
+            System.out.println("A) All Transactions");
+            System.out.println("D) Deposit Transactions");
+            System.out.println("P) Payment Transactions");
             System.out.println("R) Reports");
             System.out.println("H) Home");
 
@@ -172,35 +175,36 @@ public class FinancialTracker {
 
             switch (input.toUpperCase()) {
                 case "A":
-                    displayLedger();
+                    displayLedger(); // Show all transactions
                     break;
                 case "D":
-                    displayDeposits();
+                    displayDeposits(); // Show only deposits
                     break;
                 case "P":
-                    displayPayments();
+                    displayPayments(); // Show only payments
                     break;
                 case "R":
-                    reportsMenu(scanner);
+                    reportsMenu(scanner); // Show reports menu
                     break;
                 case "H":
-                    running = false;
+                    running = false; // Exit the ledger menu
                     break;
                 default:
-                    System.out.println("Invalid option");
+                    System.out.println("Oops! Invalid option. Try again! 🤔");
                     break;
             }
+            System.out.println(); // Extra space for clarity
         }
     }
 
     private static void displayLedger() {
         System.out.println("All transactions:");
         for (Transaction transaction : transactions) {
-            System.out.println("Date: " + transaction.getDate() + "|" +
-                    "Time: " + transaction.getTime() + "|" +
-                    " Description: " + transaction.getDescription() +
-                    " Vendor: " + transaction.getVendor() + "|" +
-                    " Amount: " + transaction.getAmount());
+            System.out.println("Date: " + transaction.getDate() + " | " +
+                    "Time: " + transaction.getTime() + " | " +
+                    "Description: " + transaction.getDescription() +
+                    " | Vendor: " + transaction.getVendor() + " | " +
+                    "Amount: $" + String.format("%.2f", transaction.getAmount()));
         }
     }
 
@@ -208,11 +212,11 @@ public class FinancialTracker {
         System.out.println("Deposit transactions:");
         for (Transaction transaction : transactions) {
             if (transaction.getAmount() >= 0) {
-                System.out.println("Date: " + transaction.getDate() + "|" +
-                        "Time: " + transaction.getTime() + "|" +
-                        " Description: " + transaction.getDescription() +
-                        " Vendor: " + transaction.getVendor() + "|" +
-                        " Amount: " + transaction.getAmount());
+                System.out.println("Date: " + transaction.getDate() + " | " +
+                        "Time: " + transaction.getTime() + " | " +
+                        "Description: " + transaction.getDescription() +
+                        " | Vendor: " + transaction.getVendor() + " | " +
+                        "Amount: $" + String.format("%.2f", transaction.getAmount()));
             }
         }
     }
@@ -221,11 +225,11 @@ public class FinancialTracker {
         System.out.println("Payment transactions:");
         for (Transaction transaction : transactions) {
             if (transaction.getAmount() < 0) {
-                System.out.println("Date: " + transaction.getDate() + "|" +
-                        "Time: " + transaction.getTime() + "|" +
-                        " Description: " + transaction.getDescription() +
-                        " Vendor: " + transaction.getVendor() + "|" +
-                        " Amount: " + transaction.getAmount());
+                System.out.println("Date: " + transaction.getDate() + " | " +
+                        "Time: " + transaction.getTime() + " | " +
+                        "Description: " + transaction.getDescription() +
+                        " | Vendor: " + transaction.getVendor() + " | " +
+                        "Amount: $" + String.format("%.2f", Math.abs(transaction.getAmount())));
             }
         }
     }
@@ -270,12 +274,13 @@ public class FinancialTracker {
                     filterTransactionsByVendor(vendor);
                     break;
                 case "0":
-                    running = false;
+                    running = false; // Exit reports menu
                     break;
                 default:
-                    System.out.println("Invalid option");
+                    System.out.println("Oops! Invalid option. Try again! 🤔");
                     break;
             }
+            System.out.println(); // Extra space for clarity
         }
     }
 
@@ -289,7 +294,7 @@ public class FinancialTracker {
         }
 
         if (isEmpty) {
-            System.out.println("There are no results.");
+            System.out.println("There are no results. 😢");
         }
     }
 
@@ -303,8 +308,10 @@ public class FinancialTracker {
         }
 
         if (!found) {
-            System.out.println("No transactions found for vendor: " + vendor);
+            System.out.println("No transactions found for vendor: " + vendor + " 😢");
         }
     }
 }
+
+
 
