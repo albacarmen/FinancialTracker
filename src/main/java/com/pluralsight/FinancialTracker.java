@@ -15,7 +15,13 @@ public class FinancialTracker {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public static void main(String[] args) {
-        loadTransactions(FILE_NAME); // Load existing transactions from the file
+        try {
+            loadTransactions(FILE_NAME); // Load existing transactions from the file
+        }
+        catch (Exception e) {
+            System.out.println("ERROR while loading transactions: " + e.getMessage());
+        }
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -52,8 +58,15 @@ public class FinancialTracker {
     }
 
     // Load transactions from the file
-    public static void loadTransactions(String fileName) {
-        try (InputStream inputStream = FinancialTracker.class.getResourceAsStream("/transactions.csv");
+    public static void loadTransactions(String fileName) throws Exception {
+        var file = new File(fileName);
+
+        if (!file.exists()) {
+            file.createNewFile();
+            return;
+        }
+
+        try (InputStream inputStream = new FileInputStream(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
             String line;
@@ -147,12 +160,14 @@ public class FinancialTracker {
 
             System.out.println("\nPayment of $" + String.format("%.2f", amount) + " successfully processed. 💸");
         } catch (Exception e) {
-            System.err.println("\nERROR occurred while entering payment. 😢");
+            System.err.println("\nERROR occurred while entering payment 😢: " + e.getMessage());
         }
     }
 
-    private static void saveTransactionToFile(Transaction transaction) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+    private static void saveTransactionToFile(Transaction transaction) throws Exception {
+        var file = new File(FILE_NAME);
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true))) {
             bufferedWriter.write(transaction.toString());
             bufferedWriter.newLine(); // New line for the next transaction
         } catch (IOException e) {
@@ -312,6 +327,9 @@ public class FinancialTracker {
         }
     }
 }
+
+
+
 
 
 
