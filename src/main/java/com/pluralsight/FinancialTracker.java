@@ -136,3 +136,8 @@ public class FinancialTracker {
                 System.out.println("\nERROR: Cannot enter value less than or equal to 0.");
                 return;
             }
+            // Make the amount negative because it's a payment.
+            double amountNegative = amount * -1;
+
+            Transaction transaction = new Transaction(date, time, description, vendor, amountNegative);
+            transactions.add(transaction);
