@@ -103,3 +103,15 @@ public class FinancialTracker {
 
             Transaction transaction = new Transaction(date, time, description, vendor, amount);
             transactions.add(transaction);
+            
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+                bufferedWriter.write(transaction.toString());
+                bufferedWriter.newLine();
+            }
+
+            System.out.println("\nDeposit of $" + String.format("%.2f", amount) + " successfully processed.");
+
+        } catch (Exception e) {
+            System.err.println("\nERROR occurred while entering deposit: " + e.getMessage());
+        }
+    }
