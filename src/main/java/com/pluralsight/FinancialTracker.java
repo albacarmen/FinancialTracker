@@ -14,12 +14,13 @@ import java.util.Scanner;
 
 public class FinancialTracker {
 
-    private static ArrayList<Transaction> transactions = new ArrayList<>();
+    private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIME_FORMAT = "HH:mm:ss";
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_FORMAT);
+    private static final LocalDate NOW = LocalDate.now();
 
     public static void main(String[] args) {
         loadTransactions(FILE_NAME);
@@ -27,7 +28,7 @@ public class FinancialTracker {
         boolean running = true;
 
         while (running) {
-            System.out.println("Welcome to TransactionApp");
+            System.out.println("\nWelcome to TransactionApp");
             System.out.println("Choose an option:");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment (Debit)");
@@ -50,11 +51,10 @@ public class FinancialTracker {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid option");
+                    System.out.println("\nInvalid option");
                     break;
             }
         }
-
         scanner.close();
     }
 
@@ -264,4 +264,41 @@ public class FinancialTracker {
             }
         }
     }
-    
+    private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
+        System.out.printf("%-10s %-8s %-20s %-15s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        boolean hasResults = false;
+        for (Transaction transaction : transactions) {
+            if (!transaction.getDate().isBefore(startDate) && !transaction.getDate().isAfter(endDate)) {
+                System.out.printf("%-10s %-8s %-20s %-15s %-10.2f%n",
+                        transaction.getDate().format(DATE_FORMATTER),
+                        transaction.getTime().format(TIME_FORMATTER),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+                hasResults = true;
+            }
+        }
+        if (!hasResults) {
+            System.out.println("No transactions found for the specified date range.");
+        }
+    }
+
+    private static void filterTransactionsByVendor(String vendor) {
+        System.out.printf("%-10s %-8s %-20s %-15s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        boolean hasResults = false;
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                System.out.printf("%-10s %-8s %-20s %-15s %-10.2f%n",
+                        transaction.getDate().format(DATE_FORMATTER),
+                        transaction.getTime().format(TIME_FORMATTER),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+                hasResults = true;
+            }
+        }
+        if (!hasResults) {
+            System.out.println("No transactions found for vendor: " + vendor);
+        }
+    }
+}
