@@ -2,7 +2,6 @@ package com.pluralsight;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class Transaction {
     private LocalDate date;
@@ -11,10 +10,6 @@ public class Transaction {
     private String vendor;
     private double amount;
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-    // Constructor
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
@@ -23,50 +18,49 @@ public class Transaction {
         this.amount = amount;
     }
 
-    // Getters
     public LocalDate getDate() {
         return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getTime() {
         return time;
     }
 
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getVendor() {
         return vendor;
     }
 
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
     public double getAmount() {
         return amount;
     }
 
-    // Setters
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    // Convert Transaction to CSV format
-    public String toCsv() {
-        return String.format("%s|%s|%s|%s|%.2f",
-                date.format(DATE_FORMATTER),
-                time.format(TIME_FORMATTER),
-                description,
-                vendor,
-                amount);
-    }
-
-    // Override toString method for display purposes
     @Override
     public String toString() {
-        return String.format("%s %s | %s | %s | %.2f",
-                date.format(DATE_FORMATTER),
-                time.format(TIME_FORMATTER),
-                description,
-                vendor,
-                amount);
+        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount);
     }
 }
+
