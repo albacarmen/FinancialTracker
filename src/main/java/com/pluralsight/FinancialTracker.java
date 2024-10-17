@@ -225,3 +225,43 @@ public class FinancialTracker {
             }
         }
     }
+    private static void reportsMenu(Scanner scanner) {
+        boolean running = true;
+        while (running) {
+            System.out.println("Reports");
+            System.out.println("Choose an option:");
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search by Vendor");
+            System.out.println("0) Back");
+
+            String input = scanner.nextLine().trim();
+
+            switch (input) {
+                case "1":
+                    // Generate report for current month
+                    break;
+                case "2":
+                    // Generate report for previous month
+                    break;
+                case "3":
+                    // Generate report for current year
+                    break;
+                case "4":
+                    // Generate report for previous year
+                    break;
+                case "5":
+                    // Prompt for vendor name and generate report
+                    break;
+                case "0":
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option");
+                    break;
+            }
+        }
+    }
+    
