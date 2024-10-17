@@ -188,3 +188,15 @@ public class FinancialTracker {
             }
         }
     }
+    private static void displayLedger() {
+        System.out.println("Date\t\tTime\t\tDescription\t\tVendor\t\tAmount");
+        for (Transaction transaction : transactions) {
+            System.out.printf("%s\t%s\t%s\t%s\t%.2f%n",
+                    transaction.getDate(),
+                    transaction.getTime(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount());
+        }
+    }
+    
