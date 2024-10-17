@@ -95,3 +95,11 @@ public class FinancialTracker {
             String description = parts[2].trim();
             String vendor = parts[3].trim();
             double amount = Double.parseDouble(parts[4].trim());
+
+            if (amount <= 0) {
+                System.out.println("\nERROR: Cannot enter value less than or equal to 0.");
+                return;
+            }
+
+            Transaction transaction = new Transaction(date, time, description, vendor, amount);
+            transactions.add(transaction);
