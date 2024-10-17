@@ -212,4 +212,16 @@ public class FinancialTracker {
             }
         }
     }
-    
+    private static void displayPayments() {
+        System.out.println("Date\t\tTime\t\tDescription\t\tVendor\t\tAmount");
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() < 0) {
+                System.out.printf("%s\t%s\t%s\t%s\t%.2f%n",
+                        transaction.getDate(),
+                        transaction.getTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
+        }
+    }
