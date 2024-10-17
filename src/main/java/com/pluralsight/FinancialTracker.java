@@ -153,3 +153,38 @@ public class FinancialTracker {
             System.err.println("\nERROR occurred while entering payment: " + e.getMessage());
         }
     }
+    private static void ledgerMenu(Scanner scanner) {
+        boolean running = true;
+        while (running) {
+            System.out.println("Ledger");
+            System.out.println("Choose an option:");
+            System.out.println("A) All");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+
+            String input = scanner.nextLine().trim();
+
+            switch (input.toUpperCase()) {
+                case "A":
+                    displayLedger();
+                    break;
+                case "D":
+                    displayDeposits();
+                    break;
+                case "P":
+                    displayPayments();
+                    break;
+                case "R":
+                    reportsMenu(scanner);
+                    break;
+                case "H":
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option");
+                    break;
+            }
+        }
+    }
