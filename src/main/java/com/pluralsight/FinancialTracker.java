@@ -79,4 +79,19 @@ public class FinancialTracker {
             // Optionally create the file if it doesn't exist
         }
     }
+    private static void addDeposit(Scanner scanner) {
+        try {
+            System.out.println("Enter deposit details (yyyy-MM-dd HH:mm:ss | description | vendor | amount):");
+            String input = scanner.nextLine().trim();
+            String[] parts = input.split("\\|");
 
+            if (parts.length != 4) {
+                System.out.println("\nERROR: Invalid input format. Please enter 4 fields separated by '|'.");
+                return;
+            }
+
+            LocalDate date = LocalDate.parse(parts[0].trim(), DATE_FORMATTER);
+            LocalTime time = LocalTime.parse(parts[1].trim(), TIME_FORMATTER);
+            String description = parts[2].trim();
+            String vendor = parts[3].trim();
+            double amount = Double.parseDouble(parts[4].trim());
