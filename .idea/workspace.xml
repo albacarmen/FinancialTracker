@@ -41,10 +41,26 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\Desktop\Pluralsight\Capstones\FinancialTracker\src\main\resources" />
+      <recent name="C:\Users\Student\Desktop\Pluralsight\Capstones\FinancialTracker\src\test\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FinancialTracker">
+    <configuration name="FinancialTracker (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FinancialTracker" />
+      <module name="FinancialTracker" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FinancialTracker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.pluralsight.FinancialTracker" />
       <module name="FinancialTracker" />
@@ -61,6 +77,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.FinancialTracker" />
+        <item itemvalue="Application.FinancialTracker (1)" />
       </list>
     </recent_temporary>
   </component>
