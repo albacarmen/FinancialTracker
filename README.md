@@ -50,10 +50,10 @@ Additional Libraries Used:
 Here's a few screenshots to demonstrate various aspects of the application:
 
 Adding A Deposit (and handling an input error)
-![Application Screenshot](C:\Users\Student\Desktop\Pluralsight\Capstones\FinancialTracker\src\Images\sc1.jpg)
+![Application Screenshot](![sc1.jpg](src%2Fmain%2Fresources%2FImages%2Fsc1.jpg))
 
 Adding A Payment
-![Application Screenshot](C:\Users\Student\Desktop\Pluralsight\Capstones\FinancialTracker\src\Images\SC1.png)
+![Application Screenshot](![SC1.png](src%2Fmain%2Fresources%2FImages%2FSC1.png))
 
 
 
