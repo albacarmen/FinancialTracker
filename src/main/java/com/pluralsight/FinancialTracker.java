@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class FinancialTracker {
 
-    private static ArrayList<Transaction> transactions = new ArrayList<>();
+    private static final ArrayList<Transaction> transactions = new ArrayList<>();
     private static final String FILE_NAME = "transactions.csv";
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -35,21 +35,14 @@ public class FinancialTracker {
 
             // Get user input and handle options
             switch (scanner.nextLine().trim().toUpperCase()) {
-                case "D":
-                    addDeposit(scanner); // Add a deposit transaction
-                    break;
-                case "P":
-                    addPayment(scanner); // Add a payment transaction
-                    break;
-                case "L":
-                    ledgerMenu(scanner); // Show the ledger menu
-                    break;
-                case "X":
+                case "D" -> addDeposit(scanner); // Add a deposit transaction
+                case "P" -> addPayment(scanner); // Add a payment transaction
+                case "L" -> ledgerMenu(scanner); // Show the ledger menu
+                case "X" -> {
                     running = false; // Stop the program
                     System.out.println("Exiting. Transactions are saved automatically. Bye! 👋");
-                    break;
-                default:
-                    System.out.println("Oops! Invalid option. Try again! 🤔");
+                }
+                default -> System.out.println("Oops! Invalid option. Try again! 🤔");
             }
             System.out.println(); // Extra space for clarity
         }
@@ -57,15 +50,16 @@ public class FinancialTracker {
         scanner.close(); // Close the scanner to avoid memory leaks
     }
 
-    // Load transactions from the file
     public static void loadTransactions(String fileName) throws Exception {
         var file = new File(fileName);
 
         if (!file.exists()) {
             file.createNewFile();
-            return;
+            return; // Exit the method if the file is newly created
         }
 
+        // Using try-with-resources for automatic resource management
+        // This ensures that the InputStream and BufferedReader are closed automatically
         try (InputStream inputStream = new FileInputStream(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
@@ -189,24 +183,12 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "A":
-                    displayLedger(); // Show all transactions
-                    break;
-                case "D":
-                    displayDeposits(); // Show only deposits
-                    break;
-                case "P":
-                    displayPayments(); // Show only payments
-                    break;
-                case "R":
-                    reportsMenu(scanner); // Show reports menu
-                    break;
-                case "H":
-                    running = false; // Exit the ledger menu
-                    break;
-                default:
-                    System.out.println("Oops! Invalid option. Try again! 🤔");
-                    break;
+                case "A" -> displayLedger(); // Show all transactions
+                case "D" -> displayDeposits(); // Show only deposits
+                case "P" -> displayPayments(); // Show only payments
+                case "R" -> reportsMenu(scanner); // Show reports menu
+                case "H" -> running = false; // Exit the ledger menu
+                default -> System.out.println("Oops! Invalid option. Try again! 🤔");
             }
             System.out.println(); // Extra space for clarity
         }
@@ -265,35 +247,31 @@ public class FinancialTracker {
             LocalDate today = LocalDate.now();
 
             switch (input) {
-                case "1":
+                case "1" -> {
                     LocalDate firstDayOfMonth = today.withDayOfMonth(1);
                     filterTransactionsByDate(firstDayOfMonth, today);
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     LocalDate firstDayOfPrevMonth = today.minusMonths(1).withDayOfMonth(1);
                     LocalDate lastDayOfPrevMonth = firstDayOfPrevMonth.withDayOfMonth(firstDayOfPrevMonth.lengthOfMonth());
                     filterTransactionsByDate(firstDayOfPrevMonth, lastDayOfPrevMonth);
-                    break;
-                case "3":
+                }
+                case "3" -> {
                     LocalDate firstDayOfYear = today.withDayOfYear(1);
                     filterTransactionsByDate(firstDayOfYear, today);
-                    break;
-                case "4":
+                }
+                case "4" -> {
                     LocalDate firstDayOfPrevYear = today.minusYears(1).withDayOfYear(1);
                     LocalDate lastDayOfPrevYear = today.minusYears(1).withMonth(12).withDayOfMonth(31);
                     filterTransactionsByDate(firstDayOfPrevYear, lastDayOfPrevYear);
-                    break;
-                case "5":
+                }
+                case "5" -> {
                     System.out.println("Please enter a Vendor name: ");
                     String vendor = scanner.nextLine();
                     filterTransactionsByVendor(vendor);
-                    break;
-                case "0":
-                    running = false; // Exit reports menu
-                    break;
-                default:
-                    System.out.println("Oops! Invalid option. Try again! 🤔");
-                    break;
+                }
+                case "0" -> running = false; // Exit reports menu
+                default -> System.out.println("Oops! Invalid option. Try again! 🤔");
             }
             System.out.println(); // Extra space for clarity
         }
@@ -327,9 +305,3 @@ public class FinancialTracker {
         }
     }
 }
-
-
-
-
-
-
