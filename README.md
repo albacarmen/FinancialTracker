@@ -50,10 +50,10 @@ Additional Libraries Used:
 Here's a few screenshots to demonstrate various aspects of the application:
 
 Adding A Deposit (and handling an input error)
-![Application Screenshot](Desktop/sc1.jpg)
+![Application Screenshot](src/images/sc1.jpg)
 
 Adding A Payment
-![Application Screenshot](Desktop/sc1.png)
+![Application Screenshot](src/images/sc1.png)
 
 
 
