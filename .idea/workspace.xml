@@ -10,14 +10,6 @@
     <list default="true" id="fb591366-4d54-4ba5-a61f-da5e4bf8aa79" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/SC7.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SC7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/sc1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/sc1.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

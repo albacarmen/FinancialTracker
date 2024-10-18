@@ -49,18 +49,33 @@ Additional Libraries Used:
 ## Demo
 Here's a few screenshots to demonstrate various aspects of the application:
 
-Adding A Deposit (and handling an input error)
+**Adding A Deposit** (and handling an input error)
+![SC2.png](src%2Fmain%2Fresources%2FImages%2FSC2.png)
 ![sc1.jpg](src%2Fmain%2Fresources%2FImages%2Fsc1.jpg)
 
-Adding A Payment
+**Adding A Payment** 
+
 ![SC1.png](src%2Fmain%2Fresources%2FImages%2FSC1.png)
 
+**Loading All Transactions** 
 
+![SC3.png](src%2Fmain%2Fresources%2FImages%2FSC3.png)
 
+**Showing Just Deposits**
 
+![SC4.png](src%2Fmain%2Fresources%2FImages%2FSC4.png)
 
+**Show Just Payments**
 
+![SC5.png](src%2Fmain%2Fresources%2FImages%2FSC5.png)
 
+**Filtering by Date**
+
+![SC6.png](src%2Fmain%2Fresources%2FImages%2FSC6.png)
+
+**Filtering by Vendor**
+
+![SC7.png](src%2Fmain%2Fresources%2FImages%2FSC7.png)
 
 
 ## Future Work
@@ -75,8 +90,9 @@ Potential enhancements for this application include:
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [Java withdayofMonth](https://www.geeksforgeeks.org/localdate-withdayofmonth-method-in-java-with-examples/)
+- [StackOverFlow](https://stackoverflow.com/questions/24988491/difference-between-e-getmessage-and-e-getlocalizedmessage)
+- [DocsOracle] (https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html)
 
 ## Team Members
 
