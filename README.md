@@ -74,5 +74,5 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 ## Thanks
 
-- Thank you to Raymond for all the tips, for the skeleton code and for not letting us make stupid decisions.
+- Thank you to Raymond for all the tips, for the skeleton code and for not letting us make silly mistakes.
 - A heartfelt thank you to Corrie and Aaron who never make feel like I'm asking a stupid question! Your encouragement and feedback made all the difference. 
