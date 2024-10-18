@@ -1,17 +1,20 @@
-# Project Title
+# Financial Tracker
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+Welcome to the Financial Tracker! 🎉 This application is designed to help you take control of your finances with ease. Whether you're adding deposits or tracking payments, this tool makes it simple to manage your money. 
+With features like customizable reports and vendor filters, you can analyze your spending habits and gain insights into your financial life.
 
 ![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
-
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to generate various reports, so I can analyze my financial data over different time frames.
+- As a user, I want to filter transactions by vendor, so I can review my spending with specific vendors.
+- As a user, I want to have input validation for all transaction entries, so I can avoid errors when entering data.
+- As a user, I want to ensure my transaction data is saved consistently, so I can rely on the application for accurate financial tracking.
+- As a user, I want to ensure the application handles errors well, so I am informed of issues without crashing.
+- As a user, I want to see all my transaction data persist between sessions, so I can access my history anytime.
 
 ## Setup
 
@@ -34,8 +37,14 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java Version: JDK 17.
+Additional Libraries Used:
+- java.io.*;
+  java.time.LocalDate;
+  java.time.LocalTime;
+  java.time.format.DateTimeFormatter;
+  java.util.ArrayList;
+  java.util.Scanner;
 
 ## Demo
 
@@ -45,10 +54,11 @@ Include screenshots or GIFs that show your application in action. Use tools like
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
+Potential enhancements for this application include:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Implementing a GUI for better user interaction.
+- Enhancing the reporting features with graphical visualizations.
+- Adding expense categorization for more detailed financial tracking.
 
 ## Resources
 
@@ -59,12 +69,10 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- **Carmen Alba** - Only member. 
+
 
 ## Thanks
 
-Express gratitude towards those who provided help, guidance, or resources:
-
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to Raymond for all the tips, for the skeleton code and for not letting us make stupid decisions.
+- A heartfelt thank you to Corrie and Aaron who never make feel like I'm asking a stupid question! Your encouragement and feedback made all the difference. 
