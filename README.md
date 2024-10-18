@@ -25,15 +25,15 @@ Instructions on how to set up and run the project using IntelliJ IDEA.
 - IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from [here](https://www.jetbrains.com/idea/download/).
 - Java SDK: Make sure Java SDK is installed and configured in IntelliJ.
 
-### Running the Application in IntelliJ
+### How to Run the Application in IntelliJ
 
-Follow these steps to get your application running within IntelliJ IDEA:
+To run your application in IntelliJ IDEA, follow these steps:
 
-1. Open IntelliJ IDEA.
-2. Select "Open" and navigate to the directory where you cloned or downloaded the project.
-3. After the project opens, wait for IntelliJ to index the files and set up the project.
-4. Find the main class with the `public static void main(String[] args)` method.
-5. Right-click on the file and select 'Run 'YourMainClassName.main()'' to start the application.
+- Launch IntelliJ IDEA.
+- Click on "Open" and navigate to the folder where you cloned or downloaded the project.
+- Once the project opens, allow IntelliJ to index the files and configure the project settings.
+- Locate the main class that contains the public static void main(String[] args) method.
+- Right-click on the file and choose 'Run 'YourMainClassName.main()'' to start the application.
 
 ## Technologies Used
 
@@ -47,10 +47,15 @@ Additional Libraries Used:
   java.util.Scanner;
 
 ## Demo
+Here's a few screenshots to demonstrate various aspects of the application:
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
+Adding A Deposit (and handling an input error)
+![Application Screenshot](Desktop/sc1.jpg)
 
-![Application Screenshot](path/to/your/screenshot.png)
+Adding A Payment
+![Application Screenshot](Desktop/sc1.png)
+
+
 
 ## Future Work
 
