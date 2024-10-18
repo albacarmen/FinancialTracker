@@ -45,10 +45,11 @@ Include screenshots or GIFs that show your application in action. Use tools like
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
+Potential enhancements for this application include:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Implementing a GUI for better user interaction.
+- Enhancing the reporting features with graphical visualizations.
+- Adding expense categorization for more detailed financial tracking.
 
 ## Resources
 
